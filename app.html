@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MeshPay - Offline UPI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Auth Screen -->
+        <div id="auth-screen" class="screen active">
+            <div class="logo">MeshPay</div>
+            <h2>Welcome Back</h2>
+            <p class="subtitle">Secure payments, even offline.</p>
+            <div class="input-group">
+                <input type="tel" id="login-phone" placeholder="Phone Number (e.g., 9000000001)">
+            </div>
+            <div class="input-group">
+                <input type="text" id="login-otp" placeholder="OTP (Use 1234)" value="1234">
+            </div>
+            <button class="primary-btn" onclick="login()">Login / Sign Up</button>
+        </div>
+
+        <!-- Dashboard Screen -->
+        <div id="dashboard-screen" class="screen">
+            <header>
+                <div class="profile-info">
+                    <div class="avatar" id="user-avatar">A</div>
+                    <div>
+                        <h3 id="user-name">User Name</h3>
+                        <p id="user-upi">user@meshpay</p>
+                    </div>
+                </div>
+                <div class="network-toggle">
+                    <span class="label">Mesh Mode</span>
+                    <label class="switch">
+                        <input type="checkbox" id="offline-toggle" onchange="toggleNetworkMode()">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </header>
+
+            <div class="balance-card">
+                <p>Bank Balance</p>
+                <h1 id="wallet-balance">₹ 0.00</h1>
+                <div class="status-indicator online" id="network-status">
+                    <div class="dot"></div>
+                    <span id="network-status-text">Connected to Bank</span>
+                </div>
+            </div>
+
+            <div class="action-grid">
+                <div class="action-btn" onclick="showScreen('pay-screen')">
+                    <div class="icon">💸</div>
+                    <span>Pay</span>
+                </div>
+                <div class="action-btn" onclick="fetchHistory()">
+                    <div class="icon">📜</div>
+                    <span>History</span>
+                </div>
+                <div class="action-btn" onclick="alert('Scan QR not implemented in MVP')">
+                    <div class="icon">📷</div>
+                    <span>Scan</span>
+                </div>
+                <div class="action-btn" onclick="logout()">
+                    <div class="icon">🚪</div>
+                    <span>Logout</span>
+                </div>
+            </div>
+
+            <div class="recent-transactions">
+                <h3>Recent Activity</h3>
+                <div id="transaction-list" class="tx-list">
+                    <!-- Transactions injected here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Pay Screen -->
+        <div id="pay-screen" class="screen">
+            <header class="simple-header">
+                <button class="back-btn" onclick="showScreen('dashboard-screen')">←</button>
+                <h3>Send Money</h3>
+            </header>
+            <div class="pay-form">
+                <div class="input-group">
+                    <label>To UPI ID</label>
+                    <input type="text" id="pay-receiver" placeholder="e.g., bob@meshpay">
+                </div>
+                <div class="amount-input">
+                    <span>₹</span>
+                    <input type="number" id="pay-amount" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label>4-Digit MPIN</label>
+                    <input type="password" id="pay-mpin" placeholder="****" maxlength="4" value="1234">
+                </div>
+                <button class="primary-btn" id="pay-btn" onclick="processPayment()">Send Money</button>
+            </div>
+            
+            <!-- Loading Overlay -->
+            <div id="processing-overlay" class="overlay hidden">
+                <div class="spinner"></div>
+                <h3 id="processing-text">Processing...</h3>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>

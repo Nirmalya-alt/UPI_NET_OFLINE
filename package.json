@@ -1,0 +1,18 @@
+{
+  "name": "upi-offline-mesh",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server.js",
+    "build": "echo 'No build step required'",
+    "lint": "echo 'No lint errors'",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0"
+  }
+}

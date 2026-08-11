@@ -1,0 +1,6 @@
+{
+  "name": "SwiftPay Offline UPI Mesh",
+  "description": "Offline UPI Mesh payments with Bluetooth gossip simulation and online settlement",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
