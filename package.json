@@ -6,6 +6,7 @@
     "dev": "tsx server.js",
     "build": "echo 'No build step required'",
     "lint": "echo 'No lint errors'",
+    "test": "node test.js",
     "start": "node server.js"
   },
   "dependencies": {

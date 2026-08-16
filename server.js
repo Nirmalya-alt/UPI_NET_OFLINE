@@ -594,7 +594,12 @@ app.get('/api/transactions', (req, res) => {
   res.json(transactions.slice(0, 20));
 });
 
-// Start Server
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server listening on http://0.0.0.0:${PORT}`);
-});
+// Export Express app for Vercel and serverless environments
+export default app;
+
+// Start Server in standalone / development environments
+if (!process.env.VERCEL) {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server listening on http://0.0.0.0:${PORT}`);
+  });
+}
